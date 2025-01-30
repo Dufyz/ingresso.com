@@ -1,10 +1,14 @@
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { forwardRef, Module } from '@nestjs/common';
+import { PresentationModule } from './presentation/presentation.module';
+import { InfraestructureModule } from './infra/infra.module';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    forwardRef(() => InfraestructureModule.forRoot()),
+    PresentationModule,
+  ],
+  exports: [],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
